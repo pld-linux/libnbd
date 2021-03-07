@@ -1,9 +1,18 @@
 # TODO: golang
+#
+# Conditional build:
+%bcond_without	ocaml_opt	# native optimized binaries
+
+# not yet available on x32 (ocaml 4.02.1), update when upstream will support it
+%ifnarch %{ix86} %{x8664} %{arm} aarch64 ppc sparc sparcv9
+%undefine	with_ocaml_opt
+%endif
+
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
 Version:	1.6.2
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.libguestfs.org/libnbd/1.6-stable/%{name}-%{version}.tar.gz
@@ -183,7 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING.LIB README
+%doc README SECURITY TODO
 %attr(755,root,root) %{_bindir}/nbdcopy
 %attr(755,root,root) %{_bindir}/nbdinfo
 %attr(755,root,root) %{_libdir}/libnbd.so.*.*.*
@@ -193,7 +202,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc TODO examples/*.c examples/LICENSE-FOR-EXAMPLES
+%doc examples/{LICENSE-FOR-EXAMPLES,*.c}
 %{_libdir}/libnbd.so
 %{_includedir}/libnbd.h
 %{_pkgconfigdir}/libnbd.pc
@@ -212,12 +221,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n ocaml-%{name}-devel
 %defattr(644,root,root,755)
-%doc ocaml/examples/*.ml ocaml/examples/LICENSE-FOR-EXAMPLES
-%{_libdir}/ocaml/nbd/NBD.cmx
+%doc ocaml/examples/{LICENSE-FOR-EXAMPLES,*.ml}
 %{_libdir}/ocaml/nbd/NBD.mli
 %{_libdir}/ocaml/nbd/libmlnbd.a
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/nbd/NBD.cmx
 %{_libdir}/ocaml/nbd/mlnbd.a
 %{_libdir}/ocaml/nbd/mlnbd.cmxa
+%endif
 %{_mandir}/man3/libnbd-ocaml.3*
 %{_mandir}/man3/NBD.3*
 %{_mandir}/man3/NBD.*.3*
