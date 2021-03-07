@@ -9,7 +9,7 @@ Group:		Libraries
 Source0:	https://download.libguestfs.org/libnbd/1.6-stable/%{name}-%{version}.tar.gz
 # Source0-md5:	dee634a684171133110432186b738853
 URL:		https://github.com/libguestfs/libnbd
-BuildRequires:	bash-completion >= 2.0
+BuildRequires:	bash-completion-devel >= 2.0
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gnutls-devel >= 3.3.0
 BuildRequires:	jq
@@ -206,6 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/nbd
 %{_libdir}/ocaml/nbd/META
+%{_libdir}/ocaml/nbd/NBD.cma
 %{_libdir}/ocaml/nbd/NBD.cmi
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllmlnbd.so
 
