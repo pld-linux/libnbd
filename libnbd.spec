@@ -206,8 +206,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/nbd
 %{_libdir}/ocaml/nbd/META
-%{_libdir}/ocaml/nbd/NBD.cma
 %{_libdir}/ocaml/nbd/NBD.cmi
+%{_libdir}/ocaml/nbd/mlnbd.cma
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllmlnbd.so
 
 %files -n ocaml-%{name}-devel
