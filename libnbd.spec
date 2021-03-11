@@ -1,6 +1,7 @@
 # TODO: golang
 #
 # Conditional build:
+%bcond_without	ocaml		# Ocaml bindings
 %bcond_without	ocaml_opt	# native optimized binaries
 
 # not yet available on x32 (ocaml 4.02.1), update when upstream will support it
@@ -25,9 +26,11 @@ BuildRequires:	jq
 BuildRequires:	libfuse-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.0
+%if %{with ocaml}
 BuildRequires:	ocaml
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml-ocamldoc
+%endif
 BuildRequires:	perl-tools-pod
 BuildRequires:	pkgconfig
 BuildRequires:	python3-devel >= 1:3.2
@@ -159,7 +162,7 @@ parametrów dla narzędzi NBD (nbdcopy, nbdfuse, nbdinfo, nbdsh).
 	PYTHON=%{__python3} \
 	--enable-fuse \
 	--disable-golang \
-	--enable-ocaml \
+	%{__enable_disable ocaml} \
 	--enable-python \
 	--disable-static \
 	--with-python-installdir=%{py3_sitedir} \
@@ -211,6 +214,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/libnbd-security.3*
 %{_mandir}/man3/nbd_*.3*
 
+%if %{with ocaml}
 %files -n ocaml-%{name}
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/nbd
@@ -232,6 +236,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/libnbd-ocaml.3*
 %{_mandir}/man3/NBD.3*
 %{_mandir}/man3/NBD.*.3*
+%endif
 
 %files -n python3-%{name}
 %defattr(644,root,root,755)
