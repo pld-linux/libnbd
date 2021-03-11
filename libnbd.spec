@@ -182,7 +182,9 @@ rm -rf $RPM_BUILD_ROOT
 # Delete libtool crap.
 find $RPM_BUILD_ROOT -name '*.la' -delete
 
+%if %{with ocaml}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/stublibs/*.owner
+%endif
 
 # Delete the golang man page since we're not distributing the bindings.
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/libnbd-golang.3*
