@@ -12,12 +12,12 @@
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
-Version:	1.6.2
-Release:	4
+Version:	1.8.1
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.libguestfs.org/libnbd/1.6-stable/%{name}-%{version}.tar.gz
-# Source0-md5:	dee634a684171133110432186b738853
+Source0:	https://download.libguestfs.org/libnbd/1.8-stable/%{name}-%{version}.tar.gz
+# Source0-md5:	a8991f4493e4d1a33099b81265ac4d21
 URL:		https://github.com/libguestfs/libnbd
 BuildRequires:	bash-completion-devel >= 2.0
 BuildRequires:	glib2-devel >= 2.0
@@ -35,6 +35,7 @@ BuildRequires:	perl-tools-pod
 BuildRequires:	pkgconfig
 BuildRequires:	python3-devel >= 1:3.2
 BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 1.673
 BuildRequires:	util-linux
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
