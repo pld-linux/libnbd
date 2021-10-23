@@ -12,12 +12,12 @@
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
-Version:	1.8.5
+Version:	1.10.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.libguestfs.org/libnbd/1.8-stable/%{name}-%{version}.tar.gz
-# Source0-md5:	a3e829dc595b655c7bdf63708760cb2f
+Source0:	https://download.libguestfs.org/libnbd/1.10-stable/%{name}-%{version}.tar.gz
+# Source0-md5:	99b949bfb9845c59a05e53aad1c01036
 URL:		https://github.com/libguestfs/libnbd
 BuildRequires:	bash-completion-devel >= 2.0
 BuildRequires:	glib2-devel >= 2.0
@@ -159,6 +159,11 @@ parametrów dla narzędzi NBD (nbdcopy, nbdfuse, nbdinfo, nbdsh).
 %setup -q
 
 %build
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	PYTHON=%{__python3} \
 	--enable-fuse \
