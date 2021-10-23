@@ -12,18 +12,18 @@
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
-Version:	1.8.1
+Version:	1.8.5
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.libguestfs.org/libnbd/1.8-stable/%{name}-%{version}.tar.gz
-# Source0-md5:	a8991f4493e4d1a33099b81265ac4d21
+# Source0-md5:	a3e829dc595b655c7bdf63708760cb2f
 URL:		https://github.com/libguestfs/libnbd
 BuildRequires:	bash-completion-devel >= 2.0
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gnutls-devel >= 3.3.0
 BuildRequires:	jq
-BuildRequires:	libfuse-devel
+BuildRequires:	libfuse3-devel >= 3
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.0
 %if %{with ocaml}
