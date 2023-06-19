@@ -1,4 +1,4 @@
-# TODO: golang
+# TODO: golang, ublksrv support
 #
 # Conditional build:
 %bcond_without	ocaml		# Ocaml bindings
@@ -12,19 +12,22 @@
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
-Version:	1.12.3
+Version:	1.16.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.libguestfs.org/libnbd/1.12-stable/%{name}-%{version}.tar.gz
-# Source0-md5:	5dbc17e4b8231d76fb92dcc30c1e4565
+Source0:	https://download.libguestfs.org/libnbd/1.16-stable/%{name}-%{version}.tar.gz
+# Source0-md5:	4dd9b0e5ac6a7f3fa95cf750db4aaa2f
 URL:		https://github.com/libguestfs/libnbd
-BuildRequires:	bash-completion-devel >= 2.0
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake
+BuildRequires:	bash-completion-devel >= 1:2.0
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gnutls-devel >= 3.3.0
 BuildRequires:	jq
 BuildRequires:	libfuse3-devel >= 3
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtool >= 2:2
 BuildRequires:	libxml2-devel >= 2.0
 %if %{with ocaml}
 BuildRequires:	ocaml
@@ -143,7 +146,7 @@ Summary:	Bash tab-completion for NBD utilities
 Summary(pl.UTF-8):	Bashowe uzupełnianie parametrów dla narzędzi NBD
 Group:		Applications/Shells
 Requires:	%{name} = %{version}-%{release}
-Requires:	bash-completion >= 2.0
+Requires:	bash-completion >= 1:2.0
 Obsoletes:	libnbd-bash-completion < 1.6.2
 BuildArch:	noarch
 
@@ -203,12 +206,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README SECURITY TODO
+%doc README.md SECURITY TODO
 %attr(755,root,root) %{_bindir}/nbdcopy
+%attr(755,root,root) %{_bindir}/nbddump
 %attr(755,root,root) %{_bindir}/nbdinfo
 %attr(755,root,root) %{_libdir}/libnbd.so.*.*.*
 %ghost %{_libdir}/libnbd.so.0
 %{_mandir}/man1/nbdcopy.1*
+%{_mandir}/man1/nbddump.1*
 %{_mandir}/man1/nbdinfo.1*
 
 %files devel
@@ -264,6 +269,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n bash-completion-%{name}
 %defattr(644,root,root,755)
 %{bash_compdir}/nbdcopy
+%{bash_compdir}/nbddump
 %{bash_compdir}/nbdfuse
 %{bash_compdir}/nbdinfo
 %{bash_compdir}/nbdsh
+%{bash_compdir}/nbdublk
