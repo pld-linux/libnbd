@@ -1,8 +1,9 @@
-# TODO: golang, ublksrv support
+# TODO: golang support
 #
 # Conditional build:
 %bcond_without	ocaml		# Ocaml bindings
 %bcond_without	ocaml_opt	# native optimized binaries
+%bcond_without	ublk		# ublksrv support
 
 # not yet available on x32 (ocaml 4.02.1), update when upstream will support it
 %ifnarch %{ix86} %{x8664} %{arm} aarch64 ppc sparc sparcv9
@@ -39,6 +40,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python3-devel >= 1:3.2
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.673
+%{?with_ublk:BuildRequires:	ubdsrv-devel}
 BuildRequires:	util-linux
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -174,6 +176,7 @@ parametrów dla narzędzi NBD (nbdcopy, nbdfuse, nbdinfo, nbdsh).
 	%{__enable_disable ocaml} \
 	--enable-python \
 	--disable-static \
+	%{!?with_ublk:--disable-ublk} \
 	--with-python-installdir=%{py3_sitedir} \
 	--with-tls-priority=@LIBNBD,SYSTEM
 
@@ -215,6 +218,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/nbdcopy.1*
 %{_mandir}/man1/nbddump.1*
 %{_mandir}/man1/nbdinfo.1*
+%if %{with ublk}
+%attr(755,root,root) %{_bindir}/nbdublk
+%{_mandir}/man1/nbdublk.1*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
