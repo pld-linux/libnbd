@@ -1,4 +1,4 @@
-# TODO: golang support
+# TODO: golang, rust support
 #
 # Conditional build:
 %bcond_without	ocaml		# Ocaml bindings
@@ -13,12 +13,12 @@
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
-Version:	1.16.2
+Version:	1.18.3
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.libguestfs.org/libnbd/1.16-stable/%{name}-%{version}.tar.gz
-# Source0-md5:	4dd9b0e5ac6a7f3fa95cf750db4aaa2f
+Source0:	https://download.libguestfs.org/libnbd/1.18-stable/%{name}-%{version}.tar.gz
+# Source0-md5:	d658c2ec1fc1f361b93e21aa16b26f6e
 URL:		https://github.com/libguestfs/libnbd
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -40,7 +40,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python3-devel >= 1:3.2
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.673
-%{?with_ublk:BuildRequires:	ubdsrv-devel}
+%{?with_ublk:BuildRequires:	ublksrv-devel}
 BuildRequires:	util-linux
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
