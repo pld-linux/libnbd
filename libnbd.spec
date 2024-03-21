@@ -175,6 +175,7 @@ parametrów dla narzędzi NBD (nbdcopy, nbdfuse, nbdinfo, nbdsh).
 	--disable-golang \
 	%{__enable_disable ocaml} \
 	--enable-python \
+	--disable-rust \
 	--disable-static \
 	%{!?with_ublk:--disable-ublk} \
 	--with-python-installdir=%{py3_sitedir} \
