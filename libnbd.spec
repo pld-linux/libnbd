@@ -13,18 +13,18 @@
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
-Version:	1.20.2
+Version:	1.20.3
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.libguestfs.org/libnbd/1.20-stable/%{name}-%{version}.tar.gz
-# Source0-md5:	ec8c139b388b69e26e556adb4f1a1243
+# Source0-md5:	cd723f5cb46edad78f171ff40976b655
 URL:		https://github.com/libguestfs/libnbd
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	bash-completion-devel >= 1:2.0
 BuildRequires:	glib2-devel >= 2.0
-BuildRequires:	gnutls-devel >= 3.3.0
+BuildRequires:	gnutls-devel >= 3.5.18
 BuildRequires:	jq
 BuildRequires:	libfuse3-devel >= 3
 BuildRequires:	libstdc++-devel
