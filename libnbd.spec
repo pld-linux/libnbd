@@ -13,12 +13,12 @@
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
-Version:	1.22.2
-Release:	3
+Version:	1.22.5
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.libguestfs.org/libnbd/1.22-stable/%{name}-%{version}.tar.gz
-# Source0-md5:	81fcae674ecb1a636a07afd2f10432fe
+# Source0-md5:	9d38c9d6b99f73d009394b6856ee1852
 URL:		https://github.com/libguestfs/libnbd
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
