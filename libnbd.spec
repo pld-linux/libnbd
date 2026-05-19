@@ -13,12 +13,12 @@
 Summary:	NBD client library in userspace
 Summary(pl.UTF-8):	Biblioteka klienta NBD w przestrzeni użytkownika
 Name:		libnbd
-Version:	1.22.5
-Release:	2
+Version:	1.24.2
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.libguestfs.org/libnbd/1.22-stable/%{name}-%{version}.tar.gz
-# Source0-md5:	9d38c9d6b99f73d009394b6856ee1852
+Source0:	https://download.libguestfs.org/libnbd/1.24-stable/%{name}-%{version}.tar.gz
+# Source0-md5:	20684ad4cd1c54746b295f1b08a47afc
 URL:		https://github.com/libguestfs/libnbd
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -31,7 +31,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libxml2-devel >= 2.0
 %if %{with ocaml}
-BuildRequires:	ocaml
+BuildRequires:	ocaml >= 1:4.05
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml-ocamldoc
 %endif
@@ -214,7 +214,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nbdcopy
 %attr(755,root,root) %{_bindir}/nbddump
 %attr(755,root,root) %{_bindir}/nbdinfo
-%attr(755,root,root) %{_libdir}/libnbd.so.*.*.*
+%{_libdir}/libnbd.so.*.*.*
 %ghost %{_libdir}/libnbd.so.0
 %{_mandir}/man1/nbdcopy.1*
 %{_mandir}/man1/nbddump.1*
@@ -242,7 +242,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/nbd/META
 %{_libdir}/ocaml/nbd/NBD.cmi
 %{_libdir}/ocaml/nbd/mlnbd.cma
-%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllmlnbd.so
+%{_libdir}/ocaml/stublibs/dllmlnbd.so
 
 %files -n ocaml-%{name}-devel
 %defattr(644,root,root,755)
@@ -261,13 +261,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python3-%{name}
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/nbddiscard
 %attr(755,root,root) %{_bindir}/nbdsh
-%attr(755,root,root) %{py3_sitedir}/libnbdmod.cpython-*.so
+%attr(755,root,root) %{_bindir}/nbdzero
+%{py3_sitedir}/libnbdmod.cpython-*.so
 %{py3_sitedir}/nbd.py
 %{py3_sitedir}/nbdsh.py
 %{py3_sitedir}/__pycache__/nbd.cpython-*.py[co]
 %{py3_sitedir}/__pycache__/nbdsh.cpython-*.py[co]
+%{_mandir}/man1/nbddiscard.1*
 %{_mandir}/man1/nbdsh.1*
+%{_mandir}/man1/nbdzero.1*
+%{_mandir}/man3/libnbd-python.3*
 
 %files -n nbdfuse
 %defattr(644,root,root,755)
@@ -277,8 +282,10 @@ rm -rf $RPM_BUILD_ROOT
 %files -n bash-completion-%{name}
 %defattr(644,root,root,755)
 %{bash_compdir}/nbdcopy
+%{bash_compdir}/nbddiscard
 %{bash_compdir}/nbddump
 %{bash_compdir}/nbdfuse
 %{bash_compdir}/nbdinfo
 %{bash_compdir}/nbdsh
 %{bash_compdir}/nbdublk
+%{bash_compdir}/nbdzero
